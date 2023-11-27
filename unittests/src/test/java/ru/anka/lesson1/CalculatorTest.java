@@ -2,6 +2,7 @@ package ru.anka.lesson1;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -107,6 +108,24 @@ class CalculatorTest {
         int[] actual = {1, 2, 3};
         assertArrayEquals(expected, actual);
 
+    }
+
+    @Test
+    void calculateDiscountCheck() {
+        assertEquals(74, calculator.calculateDiscount(100, 26));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "-10, 5",
+            "0, 5",
+            "100, 101",
+            "100, 100",
+            "100, -1"
+        }, 
+        ignoreLeadingAndTrailingWhitespace = true)
+    void tcalculateDiscountError(int cost, int discountPrc) {
+        assertThrows(ArithmeticException.class, () -> calculator.calculateDiscount(cost, discountPrc));
     }
 
 }
