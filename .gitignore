@@ -3,5 +3,8 @@
 *.tar.gz
 *.rar
 .vscode
+*__pycache__/
+*.pytest_cache*
+*.venv/*
 
 unittests/target
